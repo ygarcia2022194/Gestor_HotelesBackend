@@ -18,8 +18,9 @@ const RoomSchema = mongoose.Schema({
         required: [true, "El tipo de habitacion es obligatoria"]
     },
     status: {
-        type: Boolean,
-        default: true
+        type: String,
+        enum: ["DESOCUPADA", "OCUPADA"],
+        default: "DESOCUPADA"
     },
     hotel:{
        type: mongoose.Schema.Types.ObjectId,
