@@ -15,7 +15,8 @@ const router = Router()
 router.post(
     '/login',
     [
-        check('correo', 'Este no es un correo válido').isEmail(),
+
+        check('email', 'Este no es un correo válido').isEmail(),
         check('password', 'El password es obligatorio').not().isEmpty(),
         validarCampos,
     ], login
@@ -23,11 +24,10 @@ router.post(
 
 router.post(
     '/signUp', [
-    check('nombre', 'El nombre no puede ir Vacio').not().isEmpty(),
-    check('correo', 'Este correo no es un correo valido').isEmail(),
-    check("correo").custom(existenteEmail),
+    check('name', 'El nombre no puede ir Vacio').not().isEmpty(),
+    check('email', 'Este correo no es un correo valido').isEmail(),
+    check("email").custom(existenteEmail),
     check('password', 'La password es obligatoria').not().isEmpty(),
-    check("informacion"),
     validarCampos,
 ], signUp)
 

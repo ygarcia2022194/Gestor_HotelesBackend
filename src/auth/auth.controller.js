@@ -50,7 +50,7 @@ export const login = async (req, res) => {
 export const signUp = async (req, res) => {
     try {
         const { name, email, password } = req.body;
-        const usuario = new User({ name, email, password });
+        const usuario = new Usuario({ name, email, password });
 
         const salt = bcryptjs.genSaltSync();
         usuario.password = bcryptjs.hashSync(password, salt);
@@ -59,7 +59,7 @@ export const signUp = async (req, res) => {
 
         res.status(200).json({ usuario });
     } catch (error) {
-        console.error('Error al registrar usuario:', error);
+        console.error('Error al registrar usuarioaa:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 };

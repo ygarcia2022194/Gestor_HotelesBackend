@@ -29,12 +29,18 @@ export const esRoleValido = async (role = '') => {
 // };
 
 
-export const existenteEmail = async (correo = '') => {
-    const existeEmail = await User.findOne({correo});
-    if (existeEmail){
-        throw new Error(`El email ${correo} ya fue registrado`);
+
+export const existenteEmail = async (email = '') => {
+  try {
+    const existeEmail = await User.findOne({ email });
+    if (existeEmail) {
+      throw new Error(`El email ${email} ya fue registrado`);
     }
-}
+  } catch (error) {
+    throw new Error('Error al verificar la existencia del email');
+  }
+};
+
 
 
 export const existeUsuarioById = async (id = '') => {
