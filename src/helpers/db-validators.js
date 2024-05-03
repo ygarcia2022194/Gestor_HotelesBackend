@@ -1,6 +1,6 @@
 //import Role from '../roles/role.model.js';
 import User from '../user/user.model.js';
-
+import Hotel from '../hotel/hotel.model.js';
 
 
 // export const checkRole = async (req, res, next) => {
@@ -59,3 +59,25 @@ export const existeUsuarioById = async (id = '') => {
   }
 }
 
+// ------------------- Hotel
+export const existeHotelById = async (id = '') => {
+  try {
+    const existeHotel = await Hotel.findById(id);
+    if (!existeHotel) {
+      throw new Error(`El hotel con ID: ${id} no existe`);
+    }
+  } catch (error) {
+    throw new Error(`Error al buscar el hotel por ID: ${error.message}`);
+  }
+};
+
+export const existenteNombreHotel = async (nombreHotel = '') => {
+  try {
+    const existeNombreHotel = await Hotel.findOne({ nameHotel: nombreHotel });
+    if (existeNombreHotel) {
+      throw new Error(`El nombre del hotel "${nombreHotel}" ya está registrado`);
+    }
+  } catch (error) {
+    throw new Error(`Error al verificar el nombre del hotel: ${error.message}`);
+  }
+};

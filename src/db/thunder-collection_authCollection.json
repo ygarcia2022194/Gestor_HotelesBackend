@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "authCollection",
     "collectionId": "90d4153a-249c-4afd-b694-a9baa026d908",
-    "dateExported": "2024-05-03T04:38:02.026Z",
+    "dateExported": "2024-05-03T06:01:13.705Z",
     "version": "1.2",
     "folders": [],
     "requests": [
@@ -32,7 +32,7 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-05-02T05:37:51.194Z",
-            "modified": "2024-05-03T04:24:56.853Z",
+            "modified": "2024-05-03T05:33:53.011Z",
             "headers": [
                 {
                     "name": "x-token",
@@ -41,10 +41,10 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"correo\":\"admin@gmail.com\",\n  \"password\":\"123456\"\n}",
+                "raw": "{\n  \"correo\":\"elhoteles@gmail.com\",\n  \"password\":\"123456\"\n}",
                 "form": []
             }
         }
     ],
-    "ref": "UwNxOFw-PErH_KsuwIzji90VBFVV0Tenl3m43HhzHpsfvjkzQhS9FXeL3LeQ6NV905B-Yr2PkelWIZwS3iiwpw"
+    "ref": "UwNxOFw-PErH_KsuwIzji90VBFVV0Tenl3m43HhzHpug8wApL_nbn70RmocW6n8fv4mmsbMom8q7cqu6ImIuTw"
 }

@@ -1,0 +1,101 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "HotelCollection",
+    "collectionId": "a4713936-b4dc-42f8-89e9-fc2f7bf0f10d",
+    "dateExported": "2024-05-03T06:01:27.113Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "1ac029ea-233c-4f59-8419-47ea0f81cce2",
+            "colId": "a4713936-b4dc-42f8-89e9-fc2f7bf0f10d",
+            "containerId": "",
+            "name": "HotelPost",
+            "url": "http://localhost:3000/gestorHoteles/v1/hotel",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-05-03T05:28:54.332Z",
+            "modified": "2024-05-03T05:57:26.806Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjM0NzczODY3ZmEzYWZlYzFjYWYxNjQiLCJpYXQiOjE3MTQ3MTQ0MzMsImV4cCI6MTcxNDcxODAzM30.mYWre3Bo_m3_pOTkb_LHuc8J5hf_d5_ifkumELcQH6U"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nameHotel\": \"Noriel Hotel\",\n  \"address\": \"La avenida del trap capos\",\n  \"description\": \"Hotel 5 estrellas\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "6cd6b6b8-86c6-4da8-bf02-9eef1c8988e5",
+            "colId": "a4713936-b4dc-42f8-89e9-fc2f7bf0f10d",
+            "containerId": "",
+            "name": "HotelGet",
+            "url": "http://localhost:3000/gestorHoteles/v1/hotel/",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-05-03T05:40:29.263Z",
+            "modified": "2024-05-03T05:51:28.262Z",
+            "headers": []
+        },
+        {
+            "_id": "4b83f03f-1a02-4bbf-839a-55e6f7c25e31",
+            "colId": "a4713936-b4dc-42f8-89e9-fc2f7bf0f10d",
+            "containerId": "",
+            "name": "HotelPut",
+            "url": "http://localhost:3000/gestorHoteles/v1/hotel/6634784f57708925a1c136cf",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2024-05-03T05:50:35.045Z",
+            "modified": "2024-05-03T05:51:56.917Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjM0NzczODY3ZmEzYWZlYzFjYWYxNjQiLCJpYXQiOjE3MTQ3MTQ0MzMsImV4cCI6MTcxNDcxODAzM30.mYWre3Bo_m3_pOTkb_LHuc8J5hf_d5_ifkumELcQH6U"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nameHotel\": \"Xetulul\",\n  \"address\": \"456 Avenida Imaginaria, Ciudad de los Sueños uwu\",\n  \"description\": \"Hotel 5 estrellas\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "59422620-4591-4553-b87a-fb0352902d5a",
+            "colId": "a4713936-b4dc-42f8-89e9-fc2f7bf0f10d",
+            "containerId": "",
+            "name": "HotelDelete",
+            "url": "http://localhost:3000/gestorHoteles/v1/hotel/6634774967fa3afec1caf169",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2024-05-03T05:55:04.203Z",
+            "modified": "2024-05-03T05:55:40.404Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjM0NzczODY3ZmEzYWZlYzFjYWYxNjQiLCJpYXQiOjE3MTQ3MTQ0MzMsImV4cCI6MTcxNDcxODAzM30.mYWre3Bo_m3_pOTkb_LHuc8J5hf_d5_ifkumELcQH6U"
+                }
+            ]
+        },
+        {
+            "_id": "24f10278-8eb4-4152-a056-fe6679c542be",
+            "colId": "a4713936-b4dc-42f8-89e9-fc2f7bf0f10d",
+            "containerId": "",
+            "name": "HotelGetById",
+            "url": "http://localhost:3000/gestorHoteles/v1/hotel/6634774967fa3afec1caf169",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-05-03T06:00:09.290Z",
+            "modified": "2024-05-03T06:00:14.740Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjM0NzczODY3ZmEzYWZlYzFjYWYxNjQiLCJpYXQiOjE3MTQ3MTQ0MzMsImV4cCI6MTcxNDcxODAzM30.mYWre3Bo_m3_pOTkb_LHuc8J5hf_d5_ifkumELcQH6U"
+                }
+            ]
+        }
+    ],
+    "ref": "vvFMyq-c3sjEe79Smqbbzjr3yI5psv73dPYpbfxRO-dhpi7chXuuPxrrN9ClsJhrrhzSz1_G5Pd7hUeH8I8l6g"
+}

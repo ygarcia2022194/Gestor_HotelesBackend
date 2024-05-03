@@ -8,14 +8,16 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import { dbConnection } from './mongo.js'
 import userRoutes from '../src/user/user.routes.js';
-import authRoutes from '../src/auth/auth.routes.js'
+import authRoutes from '../src/auth/auth.routes.js';
+import hotelRoutes from '../src/hotel/hotel.routes.js';
 
 class Server{
     constructor(){
         this.app = express();
         this.port = process.env.PORT;
         this.authPath = '/gestorHoteles/v1/auth';
-        this.userPath = '/gestorHoteles/v1/user'
+        this.userPath = '/gestorHoteles/v1/user';
+        this.hotelPath = '/gestorHoteles/v1/hotel';
 
         this.conectarDB();
         this.middlewares();
@@ -46,6 +48,7 @@ class Server{
     routes(){
         this.app.use(this.authPath, authRoutes);
         this.app.use(this.userPath, userRoutes);
+        this.app.use(this.hotelPath, hotelRoutes);
     }
     listen(){
         this.app.listen(this.port, ()=>{
