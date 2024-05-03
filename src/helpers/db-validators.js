@@ -81,3 +81,6 @@ export const existenteNombreHotel = async (nombreHotel = '') => {
     throw new Error(`Error al verificar el nombre del hotel: ${error.message}`);
   }
 };
+
+
+// ----------- ROOM

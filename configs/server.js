@@ -10,6 +10,7 @@ import { dbConnection } from './mongo.js'
 import userRoutes from '../src/user/user.routes.js';
 import authRoutes from '../src/auth/auth.routes.js';
 import hotelRoutes from '../src/hotel/hotel.routes.js';
+import roomRoutes from '../src/room/room.routes.js';
 
 class Server{
     constructor(){
@@ -18,6 +19,7 @@ class Server{
         this.authPath = '/gestorHoteles/v1/auth';
         this.userPath = '/gestorHoteles/v1/user';
         this.hotelPath = '/gestorHoteles/v1/hotel';
+        this.roomPath = '/gestorHoteles/v1/room';
 
         this.conectarDB();
         this.middlewares();
@@ -49,6 +51,7 @@ class Server{
         this.app.use(this.authPath, authRoutes);
         this.app.use(this.userPath, userRoutes);
         this.app.use(this.hotelPath, hotelRoutes);
+        this.app.use(this.roomPath, roomRoutes);
     }
     listen(){
         this.app.listen(this.port, ()=>{

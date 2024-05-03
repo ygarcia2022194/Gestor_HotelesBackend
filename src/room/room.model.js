@@ -10,7 +10,7 @@ const RoomSchema = mongoose.Schema({
         required: [true, "La capacidad de personas para la habitacion es obligatoria"]
     },
     priceRoom: {
-        type: String,
+        type: Number,
         required: [true, "El precio de la habitacion es obligatoria"]
     },
     typeRoom: {
@@ -22,19 +22,23 @@ const RoomSchema = mongoose.Schema({
         enum: ["DESOCUPADA", "OCUPADA"],
         default: "DESOCUPADA"
     },
-    hotel:{
-       type: mongoose.Schema.Types.ObjectId,
-       ref: 'Hotel',
-       required: true 
+    hotel: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Hotel',
+        required: true
     },
-    reservation:{
+    reservation: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Reservation'
-    }
+    },
+    estado: {
+        type: Boolean,
+        default: true,
+    },
 })
 
-RoomSchema.methods.toJSON = function(){
-    const {__v, _id, ...room} = this.ObjectId()
+RoomSchema.methods.toJSON = function () {
+    const { __v, _id, ...room } = this.toObject();
     room.uid = _id;
     return room;
 }

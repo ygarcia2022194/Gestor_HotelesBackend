@@ -1,0 +1,101 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "roomCollection",
+    "collectionId": "51ee84e0-4c3f-4037-911c-268641da49f2",
+    "dateExported": "2024-05-03T07:49:09.072Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "2ab0eeb8-8455-44a3-8444-065c28525389",
+            "colId": "51ee84e0-4c3f-4037-911c-268641da49f2",
+            "containerId": "",
+            "name": "roomPost",
+            "url": "http://localhost:3000/gestorHoteles/v1/room",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-05-03T07:12:19.538Z",
+            "modified": "2024-05-03T07:34:22.919Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjM0NzczODY3ZmEzYWZlYzFjYWYxNjQiLCJpYXQiOjE3MTQ3MjA0MzIsImV4cCI6MTcxNDcyNDAzMn0.M8tFeVOOncEv3Np4r6zUkixK_LkX-UjSIi-u7jcoNWg"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n  \"description\": \"Habitación de badbunny\",\r\n  \"peopleCapacity\": \"5\",\r\n  \"priceRoom\": 2000,\r\n  \"typeRoom\": \"Deluxe\",\r\n  \"hotelId\": \"66347cc63d38fd3aec9f4f3b\"\r\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "aef14107-af51-4643-b886-b0a52108c611",
+            "colId": "51ee84e0-4c3f-4037-911c-268641da49f2",
+            "containerId": "",
+            "name": "roomGet",
+            "url": "http://localhost:3000/gestorHoteles/v1/room/",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-05-03T07:25:02.231Z",
+            "modified": "2024-05-03T07:33:51.146Z",
+            "headers": []
+        },
+        {
+            "_id": "eceb7165-4850-4e93-b518-afc5573c07da",
+            "colId": "51ee84e0-4c3f-4037-911c-268641da49f2",
+            "containerId": "",
+            "name": "roomGetById",
+            "url": "http://localhost:3000/gestorHoteles/v1/room/6634937e6645e6b2fa6cf89a",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-05-03T07:46:05.601Z",
+            "modified": "2024-05-03T07:47:07.668Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjM0NzczODY3ZmEzYWZlYzFjYWYxNjQiLCJpYXQiOjE3MTQ3MjA0MzIsImV4cCI6MTcxNDcyNDAzMn0.M8tFeVOOncEv3Np4r6zUkixK_LkX-UjSIi-u7jcoNWg"
+                }
+            ]
+        },
+        {
+            "_id": "d0e22e7b-24ae-43fe-9ac3-1631e14dbf27",
+            "colId": "51ee84e0-4c3f-4037-911c-268641da49f2",
+            "containerId": "",
+            "name": "roomPut",
+            "url": "http://localhost:3000/gestorHoteles/v1/room/663491298818cb7577c57566",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-05-03T07:32:43.845Z",
+            "modified": "2024-05-03T07:33:40.863Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjM0NzczODY3ZmEzYWZlYzFjYWYxNjQiLCJpYXQiOjE3MTQ3MjA0MzIsImV4cCI6MTcxNDcyNDAzMn0.M8tFeVOOncEv3Np4r6zUkixK_LkX-UjSIi-u7jcoNWg"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n  \"description\": \"Habitación linda\",\r\n  \"peopleCapacity\": \"5\",\r\n  \"priceRoom\": 2000,\r\n  \"typeRoom\": \"Deluxe\",\r\n  \"hotelId\": \"66347cc63d38fd3aec9f4f3b\"\r\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "1f01a352-fad2-49bc-89eb-69ed91dedfdf",
+            "colId": "51ee84e0-4c3f-4037-911c-268641da49f2",
+            "containerId": "",
+            "name": "roomDelete",
+            "url": "http://localhost:3000/gestorHoteles/v1/room/6634937e6645e6b2fa6cf89a",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-05-03T07:34:36.777Z",
+            "modified": "2024-05-03T07:47:21.938Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjM0NzczODY3ZmEzYWZlYzFjYWYxNjQiLCJpYXQiOjE3MTQ3MjA0MzIsImV4cCI6MTcxNDcyNDAzMn0.M8tFeVOOncEv3Np4r6zUkixK_LkX-UjSIi-u7jcoNWg"
+                }
+            ]
+        }
+    ],
+    "ref": "zcMNF-umPWJHHHgEG4l1HUjWZQyaf_HbppzCbVd5GO4Gyd1VbqN2oYAV4EGi926BElC-Dn997p-W30PZAJn6hA"
+}
