@@ -8,7 +8,7 @@ export const login = async (req, res) => {
     try {
         //verificar si el email existe:
         const usuario = await Usuario.findOne({ correo });
-        
+
         if (!usuario) {
             return res.status(400).json({
                 msg: "Credenciales incorrectas, Correo no existe en la base de datos",
@@ -81,13 +81,17 @@ export const usuariosDeleteClientes = async (req, res) => {
             return res.status(403).json({ error: 'Acceso denegado. No tiene permisos para eliminar este usuario.' });
         }
 
+        if (usuarioEliminar.estado === false) {
+            return res.status(400).json({ error: 'El usuario ya está desactivado.' });
+        }
+
         const usuarioEliminado = await Usuario.findByIdAndUpdate(id, { estado: false });
 
         if (!usuarioEliminado) {
             return res.status(404).json({ error: 'Usuario no encontrado' });
         }
 
-        res.status(200).json({ msg: 'Usuario eliminado', usuario: usuarioEliminado });
+        res.status(200).json({ msg: 'El usuario estaba activo y ahora ha sido desactivado.', usuario: usuarioEliminado });
     } catch (error) {
         console.error('Error al eliminar usuario:', error);
         res.status(500).json({ error: 'Error interno del servidor' });

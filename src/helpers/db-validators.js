@@ -2,13 +2,6 @@
 import User from '../user/user.model.js';
 
 
-/*
-export const esRoleValido = async (role = '') => {
-    const existeRol = await Role.findOne({role});
-    if (!existeRol){
-        throw new Error(`El role ${role} no existe en la base datos`);
-    }
-}*/
 
 // export const checkRole = async (req, res, next) => {
 //     try {
@@ -36,6 +29,26 @@ export const existenteEmail = async (correo = '') => {
     throw new Error(`El email ${correo} ya fue registrado`);
   }
 }
+
+export const validarRol = async (role = '') => {
+  try {
+    // Roles permitidos
+    const rolesPermitidos = ["ADMIN_ROLE_PLAT", "USER_ROLE", "ADMIN_ROLE_HOTEL"];
+
+    // Verifica si el rol proporcionado está en la lista de roles permitidos
+    if (!rolesPermitidos.includes(role)) {
+      throw new Error(`El rol ${role} no es válido. Los roles permitidos son: ${rolesPermitidos.join(', ')}`);
+    }
+
+    // Si el rol es válido, la validación pasa
+    return true;
+  } catch (error) {
+    // Manejo de errores, podrías imprimir o registrar el error
+    console.error('Error al verificar el rol:', error);
+    // Devuelve false en caso de error para indicar que la validación falló
+    return false;
+  }
+};
 
 
 

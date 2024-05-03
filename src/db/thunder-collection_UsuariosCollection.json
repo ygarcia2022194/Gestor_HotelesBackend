@@ -1,0 +1,96 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "UsuariosCollection",
+    "collectionId": "39bb4e56-20c1-45be-96c5-6ea5db83def1",
+    "dateExported": "2024-05-03T04:38:09.897Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "da7f2e41-9b18-4a12-ad9f-562c9c495303",
+            "colId": "39bb4e56-20c1-45be-96c5-6ea5db83def1",
+            "containerId": "",
+            "name": "userGet",
+            "url": "http://localhost:3000/gestorHoteles/v1/user/",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-05-03T04:01:56.060Z",
+            "modified": "2024-05-03T04:18:39.973Z",
+            "headers": []
+        },
+        {
+            "_id": "a731b172-d6b2-444c-ab39-2f1f4cff04fb",
+            "colId": "39bb4e56-20c1-45be-96c5-6ea5db83def1",
+            "containerId": "",
+            "name": "userPost",
+            "url": "http://localhost:3000/gestorHoteles/v1/user/",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-05-03T04:10:58.676Z",
+            "modified": "2024-05-03T04:15:01.275Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjM0NjM1OWJjNzg4YWFjOTA5NDcwOWUiLCJpYXQiOjE3MTQ3MDk2OTMsImV4cCI6MTcxNDcxMzI5M30.RV4NMWCWD6-tPOgvCw57k5HQC5kYnhkboj2gbm5CCek"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\": \"pepe\",\n  \"password\": \"123456\",\n  \"correo\": \"pepe@gmail.com\",\n  \"role\": \"ADMIN_ROLE_PLAT\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "5719cffb-ea36-491c-97e9-a600a2c5d99f",
+            "colId": "39bb4e56-20c1-45be-96c5-6ea5db83def1",
+            "containerId": "",
+            "name": "userGetById",
+            "url": "http://localhost:3000/gestorHoteles/v1/user/66346359bc788aac9094709e",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-05-03T04:17:47.968Z",
+            "modified": "2024-05-03T04:18:42.690Z",
+            "headers": []
+        },
+        {
+            "_id": "d3df1e8b-1129-4cf6-9ece-6cc3e12373ba",
+            "colId": "39bb4e56-20c1-45be-96c5-6ea5db83def1",
+            "containerId": "",
+            "name": "userPut",
+            "url": "http://localhost:3000/gestorHoteles/v1/user/6634650d58cca0bf5ed09f6c",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-05-03T04:23:35.117Z",
+            "modified": "2024-05-03T04:25:10.299Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjM0NjM1OWJjNzg4YWFjOTA5NDcwOWUiLCJpYXQiOjE3MTQ3MTAyOTYsImV4cCI6MTcxNDcxMzg5Nn0.ONIUWybPvsG0rcQcYEwewHWmxn1tVGTyMhQt52WNz_w"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\": \"pepa\",\n  \"password\": \"123456\",\n  \"correo\": \"pepa@gmail.com\",\n  \"role\": \"ADMIN_ROLE_PLAT\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "dff8b5d5-96b9-42ef-97f8-3f254f75deba",
+            "colId": "39bb4e56-20c1-45be-96c5-6ea5db83def1",
+            "containerId": "",
+            "name": "userDelete",
+            "url": "http://localhost:3000/gestorHoteles/v1/user/66346359bc788aac9094709e",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-05-03T04:36:59.197Z",
+            "modified": "2024-05-03T04:37:41.121Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjM0NjM1OWJjNzg4YWFjOTA5NDcwOWUiLCJpYXQiOjE3MTQ3MTAyOTYsImV4cCI6MTcxNDcxMzg5Nn0.ONIUWybPvsG0rcQcYEwewHWmxn1tVGTyMhQt52WNz_w"
+                }
+            ]
+        }
+    ],
+    "ref": "dTm_p3bIC2HQPCv87U8LdB1CLqoWuvov4Ol9C1wrfayuSXrpxUJWpAsZehIfTyP2-bA2cvmKaiYSjJKXJNNZHA"
+}

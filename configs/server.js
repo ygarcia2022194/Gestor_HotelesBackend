@@ -1,11 +1,13 @@
 'use strict'
 
+import bcryptjs from 'bcryptjs';
+import User from '../src/user/user.model.js'
 import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import { dbConnection } from './mongo.js'
-//import userRoutes from '../src/user/';
+import userRoutes from '../src/user/user.routes.js';
 import authRoutes from '../src/auth/auth.routes.js'
 
 class Server{
@@ -13,6 +15,7 @@ class Server{
         this.app = express();
         this.port = process.env.PORT;
         this.authPath = '/gestorHoteles/v1/auth';
+        this.userPath = '/gestorHoteles/v1/user'
 
         this.conectarDB();
         this.middlewares();
@@ -21,6 +24,17 @@ class Server{
 
     async conectarDB(){
         await dbConnection();
+
+        const lengthUsers = await User.countDocuments()
+        if (lengthUsers > 0 ) return;
+
+        const salt = bcryptjs.genSaltSync();
+        const password = bcryptjs.hashSync('123456', salt);
+
+        const adminUser = new User(
+            { nombre: "Alejandro", correo: "admin@gmail.com", password, role: "ADMIN_ROLE_PLAT" }
+        )
+        adminUser.save()
     }
 
     middlewares(){
@@ -31,7 +45,7 @@ class Server{
 
     routes(){
         this.app.use(this.authPath, authRoutes);
-
+        this.app.use(this.userPath, userRoutes);
     }
     listen(){
         this.app.listen(this.port, ()=>{

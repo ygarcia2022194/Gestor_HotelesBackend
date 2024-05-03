@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "configuracion de cuenta Usuarios",
     "collectionId": "1a1c550f-6cd2-4914-b2db-3523ba758072",
-    "dateExported": "2024-05-03T03:47:10.730Z",
+    "dateExported": "2024-05-03T04:38:06.154Z",
     "version": "1.2",
     "folders": [],
     "requests": [
@@ -11,18 +11,18 @@
             "colId": "1a1c550f-6cd2-4914-b2db-3523ba758072",
             "containerId": "",
             "name": "DeleteCuenta",
-            "url": "http://localhost:3000/gestorHoteles/v1/auth/65eab2fac57d7b5e59680680",
+            "url": "http://localhost:3000/gestorHoteles/v1/auth/66345ece4fbf5231ec6050c0",
             "method": "DELETE",
             "sortNum": 20000,
             "created": "2024-05-03T03:32:12.172Z",
-            "modified": "2024-05-03T03:33:47.232Z",
+            "modified": "2024-05-03T03:55:46.022Z",
             "headers": [
                 {
                     "name": "x-token",
-                    "value": ""
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjM0NWVjZTRmYmY1MjMxZWM2MDUwYzAiLCJpYXQiOjE3MTQ3MDg1MzUsImV4cCI6MTcxNDcxMjEzNX0.DJfkx-dACOn_hINTqWLJAGuRn2ATi2Brlu5O2HVB-9k"
                 }
             ]
         }
     ],
-    "ref": "F257BomZVPgnYkI5EW5YKkqeM_jYdGWYu4GJn-8l9KiQIdrqhPuPQ5ZWxHQLZQlF2mXIaRIcJtfGfSrH9l4z0g"
+    "ref": "F257BomZVPgnYkI5EW5YKkqeM_jYdGWYu4GJn-8l9KhbQ1Jq5bbl4N8FQT47aqdl1DgLIJL8pp-F97l8MAXRgQ"
 }
