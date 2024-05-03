@@ -1,0 +1,28 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "configuracion de cuenta Usuarios",
+    "collectionId": "1a1c550f-6cd2-4914-b2db-3523ba758072",
+    "dateExported": "2024-05-03T03:47:10.730Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "a08852c2-d802-4da4-9612-bbd6da93998e",
+            "colId": "1a1c550f-6cd2-4914-b2db-3523ba758072",
+            "containerId": "",
+            "name": "DeleteCuenta",
+            "url": "http://localhost:3000/gestorHoteles/v1/auth/65eab2fac57d7b5e59680680",
+            "method": "DELETE",
+            "sortNum": 20000,
+            "created": "2024-05-03T03:32:12.172Z",
+            "modified": "2024-05-03T03:33:47.232Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": ""
+                }
+            ]
+        }
+    ],
+    "ref": "F257BomZVPgnYkI5EW5YKkqeM_jYdGWYu4GJn-8l9KiQIdrqhPuPQ5ZWxHQLZQlF2mXIaRIcJtfGfSrH9l4z0g"
+}

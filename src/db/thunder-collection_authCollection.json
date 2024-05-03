@@ -1,0 +1,50 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "authCollection",
+    "collectionId": "90d4153a-249c-4afd-b694-a9baa026d908",
+    "dateExported": "2024-05-03T03:46:56.075Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "7e889db0-7543-4fa9-a3ad-b82a12a7641b",
+            "colId": "90d4153a-249c-4afd-b694-a9baa026d908",
+            "containerId": "",
+            "name": "signUp",
+            "url": "http://localhost:3000/gestorHoteles/v1/auth/signUp",
+            "method": "POST",
+            "sortNum": 5000,
+            "created": "2024-05-02T05:37:51.195Z",
+            "modified": "2024-05-03T03:38:09.703Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\": \"client1\",\n  \"correo\": \"client1@gmail.com\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "db92332f-9b58-4de5-be13-48a9154e8610",
+            "colId": "90d4153a-249c-4afd-b694-a9baa026d908",
+            "containerId": "",
+            "name": "login",
+            "url": "http://localhost:3000/gestorHoteles/v1/auth/login",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-05-02T05:37:51.194Z",
+            "modified": "2024-05-03T03:38:15.386Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU5NDk1NjQ1NDk0ZWNkNTVkNzUwZTkiLCJpYXQiOjE3MDk4NzQzMTAsImV4cCI6MTcwOTg3NzkxMH0.1ESZabFnQyeYtjbc3aLfY997rFj2grORhLKIo9n6oBw"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"correo\":\"client1@gmail.com\",\n  \"password\":\"123456\"\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "UwNxOFw-PErH_KsuwIzji90VBFVV0Tenl3m43HhzHptMEFkgfZfClvBrSD1AbklBXAIAyjU1Slk90BVcSo6i8w"
+}

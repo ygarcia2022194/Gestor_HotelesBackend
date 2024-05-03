@@ -8,7 +8,7 @@ export const login = async (req, res) => {
     try {
         //verificar si el email existe:
         const usuario = await Usuario.findOne({ correo });
-
+        
         if (!usuario) {
             return res.status(400).json({
                 msg: "Credenciales incorrectas, Correo no existe en la base de datos",
@@ -17,7 +17,7 @@ export const login = async (req, res) => {
         //verificar si el ususario está activo
         if (!usuario.estado) {
             return res.status(400).json({
-                msg: "El usuario no existe en la base de datos",
+                msg: "El usuario no existe en la base de datos sssssss",
             });
         }
         // verificar la contraseña
@@ -48,18 +48,48 @@ export const login = async (req, res) => {
 // ---------Usuarios Normales
 
 export const signUp = async (req, res) => {
+
+    const { nombre, correo, password } = req.body;
+    const usuario = new Usuario({ nombre, correo, password });
+
+    const salt = bcryptjs.genSaltSync();
+    usuario.password = bcryptjs.hashSync(password, salt);
+
+    await usuario.save();
+
+    res.status(200).json({
+        usuario
+    });
+}
+
+
+// Eliminar cuenta propia de usuarios
+export const usuariosDeleteClientes = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
-        const usuario = new Usuario({ name, email, password });
+        const { id } = req.params;
+        const usuario = req.usuario;
 
-        const salt = bcryptjs.genSaltSync();
-        usuario.password = bcryptjs.hashSync(password, salt);
+        if (usuario.role !== 'USER_ROLE') {
+            return res.status(403).json({ error: 'Acceso denegado. El usuario no tiene permisos para realizar esta función.' });
+        }
 
-        await usuario.save();
+        const usuarioEliminar = await Usuario.findById(id);
+        if (!usuarioEliminar) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+        if (usuario.correo !== usuarioEliminar.correo) {
+            return res.status(403).json({ error: 'Acceso denegado. No tiene permisos para eliminar este usuario.' });
+        }
 
-        res.status(200).json({ usuario });
+        const usuarioEliminado = await Usuario.findByIdAndUpdate(id, { estado: false });
+
+        if (!usuarioEliminado) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+
+        res.status(200).json({ msg: 'Usuario eliminado', usuario: usuarioEliminado });
     } catch (error) {
-        console.error('Error al registrar usuarioaa:', error);
+        console.error('Error al eliminar usuario:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 };
