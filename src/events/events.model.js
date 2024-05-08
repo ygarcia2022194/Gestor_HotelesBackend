@@ -27,11 +27,15 @@ const EventsSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
-    }
+    },
+    estado: {
+        type: Boolean,
+        default: true,
+    },
 })
 
 EventsSchema.methods.toJSON = function(){
-    const {__v, _id, ...events} = this.ObjectId()
+    const {__v, _id, ...events} = this.toObject()
     events.uid = _id;
     return events
 }

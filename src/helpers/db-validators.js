@@ -1,7 +1,7 @@
 //import Role from '../roles/role.model.js';
 import User from '../user/user.model.js';
 import Hotel from '../hotel/hotel.model.js';
-
+import Events from '../events/events.model.js';
 
 // export const checkRole = async (req, res, next) => {
 //     try {
@@ -84,3 +84,16 @@ export const existenteNombreHotel = async (nombreHotel = '') => {
 
 
 // ----------- ROOM
+
+
+//--------------EVENTS
+export const existeEventById = async (id = '') => {
+  try {
+    const existeEvento = await Events.findById(id);
+    if (!existeEvento) {
+      throw new Error(`El evento con ID: ${id} no existe`);
+    }
+  } catch (error) {
+    throw new Error(`Error al buscar el evento por ID: ${error.message}`);
+  }
+};
