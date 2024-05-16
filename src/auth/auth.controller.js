@@ -7,43 +7,36 @@ export const login = async (req, res) => {
 
     try {
         //verificar si el email existe:
-        const usuario = await Usuario.findOne({ correo });
+        const user = await Usuario.findOne({ correo: correo.toLowerCase() });
 
-        if (!usuario) {
-            return res.status(400).json({
-                msg: "Credenciales incorrectas, Correo no existe en la base de datos",
+        if (user && (await bcryptjs.compare(password, user.password))) {
+            const token = await generarJWT(user.id, user.correo)
+
+            res.status(200).json({
+                msg: "Login Ok!!!",
+                userDetails: {
+                    username: user.nombre,
+                    token: token
+                },
             });
         }
-        //verificar si el ususario está activo
-        if (!usuario.estado) {
-            return res.status(400).json({
-                msg: "El usuario no existe en la base de datos sssssss",
-            });
+
+        if (!user) {
+            return res
+                .status(400)
+                .send(`Wrong credentials, ${correo} doesn't exists en database`);
         }
+
         // verificar la contraseña
-        const validPassword = bcryptjs.compareSync(password, usuario.password);
+        const validPassword = bcryptjs.compareSync(password, user.password);
         if (!validPassword) {
-            return res.status(400).json({
-                msg: "La contraseña es incorrecta",
-            });
+            return res.status(400).send("wrong password");
         }
-        //generar el JWT
-        const token = await generarJWT(usuario.id);
-
-        res.status(200).json({
-            msg: 'Welcomeeeee to the Login!!!',
-            usuario,
-            token
-        });
 
     } catch (e) {
-        console.log(e);
-        res.status(500).json({
-            msg: "Comuniquese con el administrador",
-        });
+        res.status(500).send("Comuniquese con el administrador");
     }
-}
-
+};
 
 // ---------Usuarios Normales
 
