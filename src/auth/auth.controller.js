@@ -3,7 +3,10 @@ import Usuario from '../user/user.model.js'
 import { generarJWT } from '../helpers/generate-jwt.js';
 
 export const login = async (req, res) => {
+    console.log("entro a login")
     const { correo, password } = req.body;
+
+    console.log(correo, password, "data recibida en backend");
 
     try {
         //verificar si el email existe:
@@ -41,9 +44,11 @@ export const login = async (req, res) => {
 // ---------Usuarios Normales
 
 export const signUp = async (req, res) => {
-
-    const { nombre, correo, password } = req.body;
+console.log("entro a signup")
+    const { correo, nombre, password } = req.body;
+    console.log(nombre, "nombre", correo, "correo", password, "password");
     const usuario = new Usuario({ nombre, correo, password });
+
 
     const salt = bcryptjs.genSaltSync();
     usuario.password = bcryptjs.hashSync(password, salt);
