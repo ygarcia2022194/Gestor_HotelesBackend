@@ -21,16 +21,20 @@ const ServiceSchema = mongoose.Schema({
         type: Number,
         required: [true, 'El precio del servicio es obligatorio']
     },
-    hotel:{
+    event: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Events'
+    }
+    /*hotel:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Hotel',
         required: true
-    },
-    user:{
+    },*/
+    /*user:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
-    }
+    }*/
 })
 
 ServiceSchema.methods.toJSON = function(){

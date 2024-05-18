@@ -1,51 +1,48 @@
 import Service from '../services/services.model.js';
 
-export const servicePost = async (req, res) =>{
+// Crear un nuevo servicio
+export const createService = async (req, res) => {
     try {
-        const service = req.service;
-
-        const{
-            nameService,
-            description,
-            typeService,
-            duration,
-            price,
-            hotelId,
-            userId
-        } = req.body;
-
-        const newService = new Service({
-            nameService,
-            description,
-            typeService,
-            duration,
-            price,
-            hotel: hotelId,
-            user: userId 
-        })
-
+        const newService = new Service(req.body);
         await newService.save();
-        res.status(200).json({service: newService})
-    } catch (error){
-        console.log('Error al crear habitacion:', error)
-        res.status(500).json({error: 'error interno del servidor'})
-        
-    }
-}
-
-export const getService = async (req, res) =>{
-    const {limite, desde} = req.query;
-    const query = {estado: true};
-
-    try {
-        const [total, service] = await Promise.all([
-            Service.countDocuments(query),
-            Service.find(query)
-            .skip(Number(desde))
-            .limit(Number(limite))
-        ])
+        res.status(201).json(newService);
     } catch (error) {
-        console.log('Error al obtener servicios', error)
-        res.status(500).json({error: 'Error interno del servidor'})
+        res.status(400).json({ message: error.message });
     }
-}
+};
+
+// Obtener todos los servicios
+export const getServices = async (req, res) => {
+    try {
+        const services = await Service.find().populate('hotel').populate('user');
+        res.status(200).json(services);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+// Obtener un servicio por ID
+export const getServiceById = async (req, res) => {
+    try {
+        const service = await Service.findById(req.params.id).populate('hotel').populate('user');
+        if (!service) {
+            return res.status(404).json({ message: 'Servicio no encontrado' });
+        }
+        res.status(200).json(service);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+// Actualizar un servicio
+export const updateService = async (req, res) => {
+    try {
+        const service = await Service.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+        if (!service) {
+            return res.status(404).json({ message: 'Servicio no encontrado' });
+        }
+        res.status(200).json(service);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};

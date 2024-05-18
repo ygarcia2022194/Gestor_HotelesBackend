@@ -23,11 +23,11 @@ const EventsSchema = mongoose.Schema({
         ref: 'Service',
         required: true
     },
-    user:{
+    /*user:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
-    },
+    },*/
     estado: {
         type: Boolean,
         default: true,

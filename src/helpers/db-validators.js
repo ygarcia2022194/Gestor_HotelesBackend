@@ -2,6 +2,8 @@
 import User from '../user/user.model.js';
 import Hotel from '../hotel/hotel.model.js';
 import Events from '../events/events.model.js';
+import Room from '../room/room.model.js';
+import Reservation from '../reservation/reservation.model.js';
 
 // export const checkRole = async (req, res, next) => {
 //     try {
@@ -97,3 +99,48 @@ export const existeEventById = async (id = '') => {
     throw new Error(`Error al buscar el evento por ID: ${error.message}`);
   }
 };
+
+export const validarNumeroHuespedes = (huespedes) => {
+  if (!Number.isInteger(huespedes) || huespedes <= 0) {
+      throw new Error('Número de huéspedes debe ser un número entero positivo');
+  }
+}
+
+export const validarFechar = async (fechaInicio, fechaFin) => {
+  if (fechaInicio >= fechaFin) {
+      throw new Error('La fecha de inicio debe ser anterior a la fecha de fin');
+  }
+};
+
+export const validarCapacidad = async (habitacionId, numeroHuespedes) => {
+  const habitacion = await Room.findById(habitacionId);
+  if (!habitacion) {
+      throw new Error('La habitación no existe');
+  }
+
+  if (numeroHuespedes > habitacion.capacidad) {
+      throw new Error('El número de huéspedes excede la capacidad de la habitación');
+  }
+};
+
+export const validarDisponibilidad = async (habitacionId, fechaInicio, fechaFin) => {
+  const reservaciones = await Reservation.find({
+      room: habitacionId,
+      $or: [
+          { dateStart: { $lte: fechaInicio }, dateFinish: { $gte: fechaInicio } },
+          { dateStart: { $lte: fechaFin }, dateFinish: { $gte: fechaFin } },
+          { dateStart: { $gte: fechaInicio }, dateFinish: { $lte: fechaFin } }
+      ]
+  });
+
+  if (reservaciones.length > 0) {
+      throw new Error('La habitación no está disponible para las fechas solicitadas');
+  }
+};
+
+export const existeReservacionById = async (id = '') => {
+  const existeReservacion = await Reservation.findById(id);
+  if (!existeReservacion) {
+      throw new Error(`El ID: ${id} No existe`);
+  }
+}
