@@ -18,11 +18,15 @@ const ReservationSchema = mongoose.Schema({
         ref: 'Room',
         required: true
     },
-    user:{
+    huespedes:{
+        type: Number,
+        required: true
+    }
+    /*user:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
-    }
+    }*/
 });
 
 ReservationSchema.methods.toJSON = function(){
