@@ -123,3 +123,25 @@ export const getHotelById = async (req, res) => {
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 };
+
+export const getHoteltByName = async (req, res = response) => {
+    try {
+        const { nameHotel } = req.query;
+        const hotel = await Hotel.find({ nameHotel: { $regex: nameHotel, $options: "i" } });
+
+        if (hotel.length === 0) {
+            return res.status(404).json({
+                msg: "No Hotel found with the provided name"
+            });
+        }
+
+        res.status(200).json({
+            hotel
+        });
+    } catch (error) {
+        console.error("Error fetching hotel by name:", error);
+        res.status(500).json({
+            msg: "Internal server error"
+        });
+    }
+};

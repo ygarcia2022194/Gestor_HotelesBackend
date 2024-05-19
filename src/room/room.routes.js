@@ -9,7 +9,8 @@ import {
     getRooms,
     roomPut,
     roomDelete,
-    getRoomById
+    getRoomById,
+    getRoomsByHotel
 } from "./room.controller.js";
 const router = Router();
 
@@ -61,5 +62,7 @@ router.delete(
     ],
     roomDelete
 )
+
+router.get("/name",getRoomsByHotel)
 
 export default router;

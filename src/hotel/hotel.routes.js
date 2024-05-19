@@ -50,6 +50,10 @@ router.get(
     getHotelById
 )
 
+router.get(
+    "/",getHotelById
+)
+
 router.delete(
     "/:id",
     [
