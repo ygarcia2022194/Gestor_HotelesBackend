@@ -13,6 +13,10 @@ const HotelSchema = mongoose.Schema({
         type: String,
         required: [true, "La descripcion es olbligatoria"]
     },
+    imgUrl: {
+        type: String,
+        required: false
+    },
     status: {
         type: Boolean,
         default: true
