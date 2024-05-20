@@ -31,6 +31,10 @@ const RoomSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Reservation'
     },
+    imgUrl: {
+        type: String,
+        required: false
+    },
     estado: {
         type: Boolean,
         default: true,
