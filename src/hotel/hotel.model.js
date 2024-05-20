@@ -19,10 +19,5 @@ const HotelSchema = mongoose.Schema({
     }
 });
 
-HotelSchema.methods.toJSON = function (){
-    const {__v, _id, ...hotel} = this.toObject(); 
-    hotel.uid = _id;
-    return hotel;
-};
 
 export default mongoose.model('Hotel', HotelSchema)
