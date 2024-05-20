@@ -130,11 +130,14 @@ export const getRoomById = async (req, res) => {
 };
 
 export const getRoomsByHotel = async (req, res) => {
-    const { hotelName } = req.query;
+    console.log(req.params)
+    const { name } = req.params;
+    console.log(name)
     try {
-        const rooms = await Room.find({ hotel: hotelName }).populate('hotel');
+        const rooms = await Room.find({ hotel: name }).populate('hotel');
         res.status(200).json({ rooms });
     } catch (error) {
+        console.log(error)
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 };

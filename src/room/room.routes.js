@@ -63,6 +63,6 @@ router.delete(
     roomDelete
 )
 
-router.get("/name",getRoomsByHotel)
+router.get("/rooms/:name",getRoomsByHotel)
 
 export default router;
