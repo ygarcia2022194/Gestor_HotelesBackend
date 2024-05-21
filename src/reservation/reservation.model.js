@@ -30,7 +30,7 @@ const ReservationSchema = mongoose.Schema({
 });
 
 ReservationSchema.methods.toJSON = function(){
-    const {__v, _id, ...reservation} =this.ObjectId()
+    const {__v, _id, ...reservation} = this.toObject();
     reservation.uid = _id;
     return reservation;
 }

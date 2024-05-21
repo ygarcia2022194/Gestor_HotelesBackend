@@ -1,9 +1,9 @@
 import { check } from "express-validator";
 import { Router } from "express";
-import {reservationDelete, reservationGet, reservationPost, reservationPut } from "./reservation.controller";
-import {validarJWT} from "../middlewares/validar-jwt";
+import {reservDelete, reservGet, reservPost, reservPut } from "./reservation.controller.js";
+//import {validarJWT} from "../middlewares/validar-jwt";
 import {
-    validarFecha,
+    validarFechar,
     validarNumeroHuespedes,
     validarCapacidad,
     validarDisponibilidad,
@@ -14,22 +14,15 @@ import { validarCampos } from "../middlewares/validar-campos.js";
 const router = Router();
 
 router.post('/', [
-    check("roomId", "El ID de la habitación es obligatorio").not().isEmpty(),
-        check("roomId").custom(validarCapacidad),
+        check("roomId", "El ID de la habitación es obligatorio").not().isEmpty(),
         check("dateStart", "La fecha de inicio es obligatoria").not().isEmpty(),
         check("dateFinish", "La fecha de fin es obligatoria").not().isEmpty(),
-        check("dateStart", "La fecha de inicio debe ser anterior a la fecha de fin").custom((value, { req }) => {
-            return validarFecha(req.body.dateStart, req.body.dateFinish);
-        }),
         check("huespedes", "El número de huéspedes es obligatorio").not().isEmpty(),
-        check(["roomId", "dateStart", "dateFinish"]).custom(async (value, { req }) => {
-            const { roomId, dateStart, dateFinish} = req.body;
-            return validarDisponibilidad(roomId, dateStart, dateFinish);
-        }),
+        check("roomId", "El id de la habitacion a reservar es obligatoria").not().isEmpty(),
         validarCampos
-], reservationPost);
+], reservPost);
 
-router.get('/', reservationGet);
+router.get('/', reservGet);
 
 router.put('/:id', 
 [
@@ -37,7 +30,7 @@ router.put('/:id',
     check("id").custom(existeReservacionById),
     validarCampos
 ]
-, reservationPut);
+, reservPut);
 
 router.delete('/:id', 
 [
@@ -45,6 +38,6 @@ router.delete('/:id',
     check("id").custom(existeReservacionById),
     validarCampos
 ]
-, reservationDelete);
+, reservDelete);
 
 export default router;

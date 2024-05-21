@@ -1,102 +1,82 @@
-import Reservation from "./reservation.model";
-import Room from "../room/room.model.js"
-import {request, response} from "express";
-import {validationResult} from 'express-validator';
+import Reservation from "./reservation.model.js";
 
-export const priceReservation = async(roomId, dateStart, dateFinish)=>{
+
+export const reservPost = async (req, res) =>{
     try {
-        const room = await Room.findById(roomId);
-        if(!room){
-            throw new Error('Room not found')
-        }
-        const diffTime = dateFinish.getTime() - dateStart.getTime();
-        const diffDays = Math.ceil(diffTime /(1000 * 60 *60 * 24));
-
-        const totalPrice = room.priceRoom * diffDays;
-
-        return totalPrice;
-    } catch (error) {
-        throw new Error('Error al calcular el precio de la reservacion: '+ error.message);
-    }
-}
-
-export const reservationPost = async(req, res) =>{
-    const errors = validationResult(req);
-    if(!errors.isEmpty()){
-        return res.status(400).json({errors: 'Room not found'});
-    }
-
-    const {roomId, dateStart, dateFinish, huespedes} = req.body;
-    try {
-        const roomExist = await Room.findOne({_id: roomId})
-        if(!roomExist){
-            return res.status(404).json({error: 'room not found'});
-        }
-
-        const dateStart2 = new Date(dateStart);
-        const dateFinish2 = new Date(dateFinish);
-
-        const priceReserv = await priceReservation(roomId, dateStart2, dateFinish2);
-
-        const reservation = new Reservation({
-            room: roomId,
-            dateStart: dateStart2,
-            dateFinish: dateFinish2,
-            huespedes,
-            estado: 'Pendiente',
-            pago: priceReserv
+        const {dateStart, dateFinish, huespedes, roomId} = req.body;
+        const newReserv = new Reservation({
+            dateStart,
+            dateFinish,
+            huespedes, 
+            room: roomId
         })
-        await reservation.save();
 
-        res.status(201).json({message: 'Reservation create', reservation})
+        await newReserv.save();
+
+        res.status(200).json({reservation: newReserv});
     } catch (error) {
-        console.error('Error al crear la reservacion: ', error);
-        res.status(500).json({error: 'Error al crear la reservacion'})
+        console.error('Error al crear la reservacion', error);
+        res.status(500).json({error: 'Error interno del servidor'})
     }
 }
 
-export const reservationGet = async (req, res) =>{
+export const reservGet = async (req, res) =>{
+    const { limite, desde } = req.query;
+    const query = { estado: true };
+
     try {
-        const reservation = await Reservation.find().populate('room');
-        res.status(200).json({reservation});
+        const [total, reservacion] = await Promise.all([
+            Reservation.countDocuments(query),
+            Reservation.find(query)
+                .skip(Number(desde))
+                .limit(Number(limite))
+        ]);
+
+        res.status(200).json({
+            total,
+            reservacion
+        });
     } catch (error) {
-        console.error('Error al obtener las reservaciones:', error);
-        res.status(500).json({ error: 'Error al obtener las reservaciones' });
+        console.error('Error al obtener reservaciones:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
 
-
-export const reservationPut = async (req, res) =>{
-    const {id} = req.params;
-
+export const reservPut = async (req, res) =>{
     try {
-        const existReserv = await Reservation.findById(id);
-        if(!existReserv){
-            return res.status(404).json({ error: 'Reservación no encontrada' });
-        }
-
+        const {id} = req.params;
         const {_id, ...resto} = req.body;
-        const reservUpdate = await Reservation.findByIdAndUpdate(id, resto, {new: true});
-        res.status(200).json({ mensaje: 'Reservación actualizada exitosamente', reservation: reservUpdate });
-    } catch (error) {
-        console.error('Error al actualizar la reservación:', error);
-        res.status(500).json({ error: 'Error al actualizar la reservación' });
-    }
-}
+        await Reservation.findByIdAndUpdate(id, resto);
+        const reservActualizada = await Reservation.findOne({ _id: id });
 
-export const reservationDelete = async (req,res) =>{
-    const {id} = req.params;
-
-    try {
-        const existReserv = await Reservation.findById(id);
-        if(!existReserv){
-            return res.status(404).json({ error: 'Reservación no encontrada' });
+        if (!reservActualizada) {
+            return res.status(404).json({ error: 'Habitación no encontrada' });
         }
 
-        await Reservation.findByIdAndDelete(id);
-        res.status(200).json({ mensaje: 'Reservación eliminada exitosamente' });
+        res.status(200).json({
+            msg: 'Habitación actualizada',
+            reservacion: reservActualizada
+        });
     } catch (error) {
-        console.error('Error al eliminar la reservación:', error);
-        res.status(500).json({ error: 'Error al eliminar la reservación' });
+        console.error('Error al actualizar habitación:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
+
+export const reservDelete = async (req, res) =>{
+    try {
+        const {id} = req.params;
+        const reservEliminada = await Reservation.findByIdAndUpdate(id, {estado: false});
+        if (!reservEliminada) {
+            return res.status(404).json({ error: 'Reservacion no encontrada' });
+        }
+        res.status(200).json({ msg: 'Reservacion eliminada', reservacion: reservEliminada});
+        console.error('Error al eliminar habitación:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    } catch (error) {
+        console.error('Error al eliminar la reservacion:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+}
+
+
