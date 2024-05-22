@@ -13,6 +13,7 @@ import hotelRoutes from '../src/hotel/hotel.routes.js';
 import roomRoutes from '../src/room/room.routes.js';
 import eventRoutes from '../src/events/events.routes.js';
 import reservationRoutes from '../src/reservation/reservation.routes.js'
+import serviceRoutes from '../src/services/services.routes.js'
 
 
 
@@ -26,6 +27,8 @@ class Server{
         this.roomPath = '/gestorHoteles/v1/room';
         this.eventPath = '/gestorHoteles/v1/event';
         this.reservationPath = '/gestorHoteles/v1/reservation'
+        this.servidePath = '/gestorHoteles/v1/service'
+
 
         this.conectarDB();
         this.middlewares();
@@ -59,7 +62,8 @@ class Server{
         this.app.use(this.hotelPath, hotelRoutes);
         this.app.use(this.roomPath, roomRoutes);
         this.app.use(this.eventPath, eventRoutes);
-        this.app.use(this.reservationPath, reservationRoutes)
+        this.app.use(this.reservationPath, reservationRoutes);
+        this.app.use(this.servidePath, serviceRoutes)
     }
     listen(){
         this.app.listen(this.port, ()=>{
