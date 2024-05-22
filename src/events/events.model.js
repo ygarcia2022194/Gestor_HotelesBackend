@@ -18,7 +18,7 @@ const EventsSchema = mongoose.Schema({
         ref: 'Hotel',
         required: true
     },
-    service:{
+   /* service:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Service',
         required: true
@@ -27,7 +27,7 @@ const EventsSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
-    },
+    },*/
     estado: {
         type: Boolean,
         default: true,

@@ -24,8 +24,8 @@ router.post(
         check('description', 'La descripción del evento es obligatoria').not().isEmpty(),
         check('dateEvent', 'La fecha del evento es obligatoria').not().isEmpty(),
         check('hotelId', 'El ID del hotel es obligatorio').not().isEmpty(),
-        check('serviceId', 'El ID del servicio es obligatorio').not().isEmpty(),
-        check('userId', 'El ID del usuario es obligatorio').not().isEmpty(),
+       // check('serviceId', 'El ID del servicio es obligatorio').not().isEmpty(),
+      //  check('userId', 'El ID del usuario es obligatorio').not().isEmpty(),
         validarCampos,
     ],
     eventPost

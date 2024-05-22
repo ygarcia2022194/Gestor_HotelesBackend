@@ -5,7 +5,7 @@ export const roomPost = async (req, res) => {
         const usuario = req.usuario;
 
         // Verificar si el usuario tiene permisos de administrador
-        if (usuario.role !== 'ADMIN_ROLE_HOTEL') {
+        if (usuario.role !== 'ADMIN_ROLE_PLAT') {
             return res.status(403).json({ error: 'Acceso denegado. El usuario no tiene permisos para realizar esta función.' });
         }
 

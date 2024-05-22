@@ -4,7 +4,7 @@ import Events from '../events/events.model.js';
 
 export const eventPost = async (req, res) => {
     try {
-        const { nameEvent, description, dateEvent, hotelId, serviceId, userId } = req.body;
+        const { nameEvent, description, dateEvent, hotelId } = req.body;
 
         // Crear una nueva instancia del evento
         const nuevoEvento = new Events({
@@ -12,8 +12,8 @@ export const eventPost = async (req, res) => {
             description,
             dateEvent,
             hotel: hotelId,
-            service: serviceId,
-            user: userId
+       //     service: serviceId,serviceId,
+       //     user: userId,  userId
         });
 
         // Guardar el nuevo evento en la base de datos
@@ -35,8 +35,8 @@ export const eventGet = async (req, res) => {
             Events.countDocuments(),
             Events.find()
                 .populate('hotel')
-                .populate('service')
-                .populate('user')
+               // .populate('service')
+               // .populate('user')
                 .skip(Number(desde))
                 .limit(Number(limite))
         ]);
