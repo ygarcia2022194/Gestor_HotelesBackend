@@ -21,6 +21,15 @@ const ReservationSchema = mongoose.Schema({
     huespedes:{
         type: Number,
         required: true
+    },
+    listService:{
+        servicios: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Services',
+        }
+    },
+    total:{
+        type: Number
     }
     /*user:{
         type: mongoose.Schema.Types.ObjectId,

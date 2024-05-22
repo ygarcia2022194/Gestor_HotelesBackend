@@ -13,13 +13,10 @@ import {
 import { validarCampos } from "../middlewares/validar-campos.js";
 const router = Router();
 
-router.post('/', [
-        check("roomId", "El ID de la habitación es obligatorio").not().isEmpty(),
-        check("dateStart", "La fecha de inicio es obligatoria").not().isEmpty(),
-        check("dateFinish", "La fecha de fin es obligatoria").not().isEmpty(),
-        check("huespedes", "El número de huéspedes es obligatorio").not().isEmpty(),
-        check("roomId", "El id de la habitacion a reservar es obligatoria").not().isEmpty(),
-        validarCampos
+router.post("/:roomId", [
+    check("dateStart", "La fecha de inicio es obligatoria").not().isEmpty(),
+    check("dateFinish", "La fecha de fin es obligatoria").not().isEmpty(),
+    check("listService", "La lista de servicios utilizados es obligatoria").not().isEmpty(),
 ], reservPost);
 
 router.get('/', reservGet);

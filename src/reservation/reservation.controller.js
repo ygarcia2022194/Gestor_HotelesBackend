@@ -1,24 +1,88 @@
 import Reservation from "./reservation.model.js";
+import Room from "../room/room.model.js"
+import Service from "../services/services.model.js"
 
-
-export const reservPost = async (req, res) =>{
-    try {
-        const {dateStart, dateFinish, huespedes, roomId} = req.body;
-        const newReserv = new Reservation({
-            dateStart,
-            dateFinish,
-            huespedes, 
-            room: roomId
-        })
-
-        await newReserv.save();
-
-        res.status(200).json({reservation: newReserv});
-    } catch (error) {
-        console.error('Error al crear la reservacion', error);
-        res.status(500).json({error: 'Error interno del servidor'})
-    }
+const convertirFecha = (fecha) =>{
+    const [dia, mes, año] = fecha.split('/');
+    return new Date(`${año}-${mes}-${dia}`);
 }
+export const calcularDias = (dateStart, dateFinish) =>{
+    const unDia = 24/60*60*1000;
+    const inicio = convertirFecha(dateStart);
+    const fin = convertirFecha(dateFinish)
+
+    const diferenciaEnMilisegundos = fin - inicio;
+    const diferenciaEnDias = Math.round(diferenciaEnMilisegundos / unDia);
+    return diferenciaEnDias;
+}
+
+export const reservPost = async (req, res) => {
+    const { dateStart, dateFinish, huespedes, listService } = req.body;
+    const { roomId } = req.params;
+
+    if (!roomId) {
+        return res.status(400).json({ error: 'El ID de la habitación es obligatorio.' });
+    }
+
+    try {
+        const room = await Room.findById(roomId);
+
+        if (!room) {
+            return res.status(404).json({ error: 'Habitación no encontrada.' });
+        }
+
+        if (room.status === 'OCUPADA') {
+            return res.status(400).json({ msg: "La habitación no está disponible" });
+        }
+
+        const dias = calcularDias(dateStart, dateFinish);
+        if (isNaN(dias) || dias <= 0) {
+            return res.status(400).json({ msg: "Fechas inválidas proporcionadas" });
+        }
+
+        let total = dias * room.priceRoom;
+        console.log('Total inicial:', total);
+        if (isNaN(total)) {
+            return res.status(400).json({ msg: "Error en el cálculo del precio de la habitación" });
+        }
+
+        const serviciosUtilizadosIds = listService ? listService.split(',') : [];
+        const serviciosUtilizados = await Service.find({ _id: { $in: serviciosUtilizadosIds } });
+
+        if (serviciosUtilizados.length !== serviciosUtilizadosIds.length) {
+            return res.status(404).json({ msg: "Algunos servicios solicitados no están disponibles" });
+        }
+
+        serviciosUtilizados.forEach(servicio => {
+            total += dias * servicio.price;
+        });
+
+        if (isNaN(total)) {
+            return res.status(400).json({ msg: "Error en el cálculo del precio total de los servicios" });
+        }
+
+        const newReservation = new Reservation({
+            room: room._id,
+            dateStart: convertirFecha(dateStart),
+            dateFinish: convertirFecha(dateFinish),
+            listService: serviciosUtilizados.map(servicio => servicio._id),
+            total,
+            huespedes
+        });
+
+        await newReservation.save();
+
+        room.status = 'OCUPADA';
+        await room.save();
+
+        res.status(201).json({
+            msg: "Reservación registrada con éxito, ahora no se puede modificar nada, si desea cancelarla, comuníquese con el hotel",
+            newReservation
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Error del servidor', details: error.message });
+    }
+};
 
 export const reservGet = async (req, res) =>{
     const { limite, desde } = req.query;
