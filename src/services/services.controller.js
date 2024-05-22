@@ -13,12 +13,10 @@ export const createService = async (req, res) => {
 
 // Obtener todos los servicios
 export const getServices = async (req, res) => {
-    try {
-        const services = await Service.find().populate('hotel').populate('user');
-        res.status(200).json(services);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+    const service = await Service.find();
+    res.json({
+        service
+    });
 };
 
 // Obtener un servicio por ID

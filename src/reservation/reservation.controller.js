@@ -85,25 +85,10 @@ export const reservPost = async (req, res) => {
 };
 
 export const reservGet = async (req, res) =>{
-    const { limite, desde } = req.query;
-    const query = { estado: true };
-
-    try {
-        const [total, reservacion] = await Promise.all([
-            Reservation.countDocuments(query),
-            Reservation.find(query)
-                .skip(Number(desde))
-                .limit(Number(limite))
-        ]);
-
-        res.status(200).json({
-            total,
-            reservacion
-        });
-    } catch (error) {
-        console.error('Error al obtener reservaciones:', error);
-        res.status(500).json({ error: 'Error interno del servidor' });
-    }
+    const reservaciones = await Reservation.find();
+    res.json({
+        reservaciones
+    });
 }
 
 export const reservPut = async (req, res) =>{
